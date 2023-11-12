@@ -1,7 +1,11 @@
-package com.facebooked.demofacebooded.pojo;
+package com.facebooked.demofacebooked.pojo;
+
+import lombok.Builder;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
+@Builder
 public class SuccessResponse {
     private String httpStatusMessage;
     private int httpCode;

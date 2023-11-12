@@ -1,13 +1,11 @@
-package com.facebooked.demofacebooded.controller;
+package com.facebooked.demofacebooked.controller;
 
 
-import com.facebooked.demofacebooded.model.User;
-import com.facebooked.demofacebooded.pojo.SuccessResponse;
-import com.facebooked.demofacebooded.service.UserService;
-import com.sun.net.httpserver.Authenticator;
+import com.facebooked.demofacebooked.model.User;
+import com.facebooked.demofacebooked.pojo.SuccessResponse;
+import com.facebooked.demofacebooked.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +16,11 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private SuccessResponse successResponse;
 
     @GetMapping
     public ResponseEntity<SuccessResponse> getAllUsers() {
-        SuccessResponse successResponse = new SuccessResponse();
         successResponse.setHttpCode(HttpStatus.OK.value());
         List<User> userList = userService.getAllUsers();
         successResponse.setData(userList);

@@ -1,13 +1,13 @@
-package com.facebooked.demofacebooded;
+package com.facebooked.demofacebooked;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemofaceboodedApplication {
+public class DemofacebookedApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemofaceboodedApplication.class, args);
+		SpringApplication.run(DemofacebookedApplication.class, args);
 	}
 
 }

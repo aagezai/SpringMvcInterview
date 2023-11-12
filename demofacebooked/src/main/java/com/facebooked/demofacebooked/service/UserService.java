@@ -1,13 +1,12 @@
-package com.facebooked.demofacebooded.service;
+package com.facebooked.demofacebooked.service;
 
 // UserService.java
-import com.facebooked.demofacebooded.model.User;
-import com.facebooked.demofacebooded.repository.UserRepository;
+import com.facebooked.demofacebooked.model.User;
+import com.facebooked.demofacebooked.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

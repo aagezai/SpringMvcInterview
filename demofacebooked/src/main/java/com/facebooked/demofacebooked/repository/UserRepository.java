@@ -1,7 +1,7 @@
-package com.facebooked.demofacebooded.repository;
+package com.facebooked.demofacebooked.repository;
 
 // UserRepository.java
-import com.facebooked.demofacebooded.model.User;
+import com.facebooked.demofacebooked.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

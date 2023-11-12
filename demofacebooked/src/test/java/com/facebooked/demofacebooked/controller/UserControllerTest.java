@@ -1,8 +1,8 @@
-package com.facebooked.demofacebooded.controller;
+package com.facebooked.demofacebooked.controller;
 
-import com.facebooked.demofacebooded.model.User;
-import com.facebooked.demofacebooded.pojo.SuccessResponse;
-import com.facebooked.demofacebooded.service.UserService;
+import com.facebooked.demofacebooked.model.User;
+import com.facebooked.demofacebooked.pojo.SuccessResponse;
+import com.facebooked.demofacebooked.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

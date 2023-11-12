@@ -1,4 +1,4 @@
-package com.facebooked.demofacebooded.model;
+package com.facebooked.demofacebooked.model;
 
 // User.java
 
