@@ -43,18 +43,22 @@ public class StreamApiDemo {
         List<Employee> employees = List.of(new Employee(121212L, "E1", 100000, "D1")
                 , new Employee(121212L, "E2", 110000, "D2")
                 , new Employee(121212L, "E3", 80000, "D3"));
-        employees.stream().
-                collect(Collectors.groupingBy(el -> Comparator.comparing(Employee::getSalary).reversed()))
+
+        System.out.println("++++++++++ find the second and 3rd Employee by salary Custom classifier function: Group by department");
+        Map<String, List<Employee>> personsByAge = employees.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment))
                 .entrySet()
                 .stream()
                 .skip(1)
                 .limit(2)
                 .flatMap(entry -> entry.getValue().stream())
-                .collect(Collectors.groupingBy(Employee::getDepartment))
-                .forEach((department, departmentEmployees) -> {
-                    departmentEmployees.forEach(employee -> System.out.println("   " + employee));
-                    System.out.println();
-                });
+                .collect(Collectors.groupingBy(Employee::getDepartment));
+
+        personsByAge.forEach((dep, em) -> {
+            System.out.print("department: " + dep);
+            em.forEach(e -> System.out.print("\t" +e));
+            System.out.println();
+        });
 
 
     }
