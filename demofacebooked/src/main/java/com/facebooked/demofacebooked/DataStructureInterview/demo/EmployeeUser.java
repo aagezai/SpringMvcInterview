@@ -7,17 +7,17 @@ import java.util.Objects;
 
 @Component
 @Builder
-public class Employee {
+public class EmployeeUser {
     private Long id;
     private String name;
     private double salary;
     private String department;
 
     // Constructors (you can have multiple constructors if needed)
-    public Employee() {
+    public EmployeeUser() {
     }
 
-    public Employee(Long id, String name, double salary, String department) {
+    public EmployeeUser(Long id, String name, double salary, String department) {
         this.id = id;
         this.name = name;
         this.salary = salary;
@@ -72,7 +72,7 @@ public class Employee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
+        EmployeeUser employee = (EmployeeUser) o;
         return Double.compare(salary, employee.salary) == 0 && Objects.equals(id, employee.id) && Objects.equals(name, employee.name) && Objects.equals(department, employee.department);
     }
 
