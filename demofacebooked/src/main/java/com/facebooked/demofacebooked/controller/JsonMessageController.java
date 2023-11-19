@@ -1,7 +1,7 @@
 package com.facebooked.demofacebooked.controller;
 
 
-import com.facebooked.demofacebooked.DataStructureInterview.demo.EmployeeUser;
+
 import com.facebooked.demofacebooked.pojo.Employee;
 import com.facebooked.demofacebooked.service.JsonKafkaConsumer;
 import com.facebooked.demofacebooked.service.JsonKafkaProducer;
