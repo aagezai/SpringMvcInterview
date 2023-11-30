@@ -115,6 +115,25 @@ public class StreamApiDemo {
                 break;
             }
         }
+        System.out.println("#################################");
+        System.out.println("_________Does traverse or iterate map and modify works? answer No_______");
+        Map<Integer,String> mapOfIntAndStr = Map.of(1,"d",3,"b");
+        Iterator iterator = mapOfIntAndStr.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<Integer,String> entry = (Map.Entry<Integer, String>) iterator.next();
+            System.out.println(entry.getKey()+ " "+entry.getValue());
+            //iterator.remove(); //it is not allowed throws concurrent modification exception
+        }
+        System.out.println("_________Does HashMap reserve the insertion order? ? answer No always _______ but Linked hashmap does ");
+        Map<Integer,String> linkedHashMap = new LinkedHashMap<>(mapOfIntAndStr);
+        linkedHashMap.entrySet().forEach(System.out::println);
+        System.out.println("_________Assume we have Employee (with id and name) create a map with id and name ");
+        EmployeeUser e1 = new EmployeeUser(11110L,"namee1",11100.00,"d1");
+        EmployeeUser e2 = new EmployeeUser(22210L,"namee2",20000.00,"d2");
+        List<EmployeeUser> employeeUserList = List.of(e2,e1);
+        employeeUserList.stream().collect(Collectors.toMap(EmployeeUser::getId,EmployeeUser::getName)).forEach((a,b)-> System.out.println(a +" "+b));
+
+
 
 
     }
