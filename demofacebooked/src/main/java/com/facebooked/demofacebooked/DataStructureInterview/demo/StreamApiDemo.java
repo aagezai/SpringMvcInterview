@@ -41,23 +41,23 @@ public class StreamApiDemo {
         List<EmployeeUser> employees = List.of(new EmployeeUser(121212L, "E1", 100000, "D1")
                 , new EmployeeUser(121212L, "E2", 110000, "D2")
                 , new EmployeeUser(121212L, "E0", 8000, "D3")
-                ,new EmployeeUser(233334l,"E5",110000,"D2")
-                ,new EmployeeUser(12144212L, "E6", 1000000, "D1"));
+                , new EmployeeUser(233334l, "E5", 110000, "D2")
+                , new EmployeeUser(12144212L, "E6", 1000000, "D1"));
         System.out.println("+++++++ sort list of employee based on salary first then by department\n");
         employees.stream().sorted(Comparator.comparing(EmployeeUser::getSalary).reversed().thenComparing(EmployeeUser::getDepartment).thenComparing(EmployeeUser::getName))
                 /*.skip(1).limit(2)*/.collect(Collectors.toList()).forEach(System.out::println);
         System.out.println("++++Group by Department  ++++++");
-       employees.stream().collect(Collectors.groupingBy(EmployeeUser::getDepartment))
+        employees.stream().collect(Collectors.groupingBy(EmployeeUser::getDepartment))
                 .entrySet()
                 .stream()
-               .forEach(System.out::println);
+                .forEach(System.out::println);
         System.out.println(" ++++++ Group by department and get EmployeeUser with max salary for each department");
         Map<String, Optional<EmployeeUser>> maxSalaryEmployeesByDep = employees.stream()
                 .collect(Collectors.groupingBy(
                         EmployeeUser::getDepartment,
                         Collectors.maxBy(Comparator.comparingDouble(EmployeeUser::getSalary))
                 ));
-                          // Sort the result by max salary in descending order
+        // Sort the result by max salary in descending order
         maxSalaryEmployeesByDep.entrySet().stream()
                 .sorted((entry1, entry2) ->//(key,vale).stream()
                         entry2.getValue().map(EmployeeUser::getSalary)
@@ -84,6 +84,38 @@ public class StreamApiDemo {
         employees.stream().sorted(comparator22).collect(Collectors.toList())
                 .forEach(el -> System.out.println(el));
         System.out.println("---------------------------------");
+        System.out.println("--------------------reverse array of Integer with out sorting-------------");
+
+        Integer[] arr = {4, 1, 9, 3, 2, 9};
+        int len = arr.length - 1;
+        for (Integer x : arr) {
+            if (len >= 0) {
+                System.out.print(arr[len]);
+                len--;
+            }
+
+        }
+        System.out.println();
+        System.out.println("-----------After converting to list reverse the Array ----------------------");
+        Integer[] arr1 = {4, 1, 9, 3, 2, 9};
+        List<Integer> re = Arrays.asList(arr1);
+        Collections.reverse(re);
+        System.out.println(re.toString());
+
+        System.out.println("-----------Fist dupplicate ----------------------");
+
+
+        List<Integer> dupplicate = List.of(2, 3, 4, 2, 6, 8, 9, 3, 6);
+        LinkedHashSet<Integer> first1 = new LinkedHashSet<>();
+        for (int i = 0; i <= dupplicate.size() - 1; i++) {
+            if (!first1.contains(dupplicate.get(i))) {
+                first1.add(i);
+            } else {
+                System.out.println("this is first duplicate element" + dupplicate.get(i));
+                break;
+            }
+        }
+
 
     }
 }
