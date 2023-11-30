@@ -104,7 +104,6 @@ public class StreamApiDemo {
 
         System.out.println("-----------Fist dupplicate ----------------------");
 
-
         List<Integer> dupplicate = List.of(2, 3, 4, 2, 6, 8, 9, 3, 6);
         LinkedHashSet<Integer> first1 = new LinkedHashSet<>();
         for (int i = 0; i <= dupplicate.size() - 1; i++) {
@@ -132,9 +131,7 @@ public class StreamApiDemo {
         EmployeeUser e2 = new EmployeeUser(22210L,"namee2",20000.00,"d2");
         List<EmployeeUser> employeeUserList = List.of(e2,e1);
         employeeUserList.stream().collect(Collectors.toMap(EmployeeUser::getId,EmployeeUser::getName)).forEach((a,b)-> System.out.println(a +" "+b));
-
-
-
+        System.out.println("mainChanged");
 
     }
 }
