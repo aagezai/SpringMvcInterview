@@ -133,6 +133,7 @@ public class StreamApiDemo {
         employeeUserList.stream().collect(Collectors.toMap(EmployeeUser::getId,EmployeeUser::getName)).forEach((a,b)-> System.out.println(a +" "+b));
         System.out.println("mainChanged");
         System.out.println("second manin change");
+        System.out.println("d");
 
     }
 }
