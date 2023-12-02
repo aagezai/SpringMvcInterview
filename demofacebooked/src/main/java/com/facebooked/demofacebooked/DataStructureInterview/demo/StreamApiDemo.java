@@ -131,7 +131,9 @@ public class StreamApiDemo {
         EmployeeUser e2 = new EmployeeUser(22210L,"namee2",20000.00,"d2");
         List<EmployeeUser> employeeUserList = List.of(e2,e1);
         employeeUserList.stream().collect(Collectors.toMap(EmployeeUser::getId,EmployeeUser::getName)).forEach((a,b)-> System.out.println(a +" "+b));
-
+        System.out.println("mainChanged");
+        System.out.println("second manin change");
+        System.out.println("d");
 
     }
 }
