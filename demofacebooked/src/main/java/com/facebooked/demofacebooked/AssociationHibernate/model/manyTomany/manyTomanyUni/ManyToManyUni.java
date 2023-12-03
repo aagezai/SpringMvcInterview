@@ -11,7 +11,12 @@ public class ManyToManyUni{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
     private String employeeName;
-    @ManyToMany(mappedBy = "employees",cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "manytoManyUniDir_addressId_employeeId",
+            joinColumns =   @JoinColumn(name = "addressId"),
+            inverseJoinColumns =      @JoinColumn(name = "employeeId")
+    )
     @JsonIgnore
-    private List<ManyToManyBiOwner> addresses;
+    private List<ManyToManyUniOwner> addresses;
 }
