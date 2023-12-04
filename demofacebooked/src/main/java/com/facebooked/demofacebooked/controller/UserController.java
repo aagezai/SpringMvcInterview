@@ -1,6 +1,7 @@
 package com.facebooked.demofacebooked.controller;
 
 
+import com.facebooked.demofacebooked.ExceptionalHandling.FaceBookedException;
 import com.facebooked.demofacebooked.model.User;
 import com.facebooked.demofacebooked.pojo.SuccessResponse;
 import com.facebooked.demofacebooked.service.UserService;
@@ -57,5 +58,14 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
+    }
+    @GetMapping("/checkCustomException")
+    public String checkCustomException(){
+        int a;
+        a = 1/0;
+        if(1==1){
+            throw new FaceBookedException("1 is equal to 1");
+        }
+        return "1==1";
     }
 }
