@@ -1,4 +1,5 @@
 package com.facebooked.demofacebooked.AOP_For_Logger;
+/*
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -33,3 +34,4 @@ public class Aop_For_Logger_Class {
         return result;
     }
 }
+*/
