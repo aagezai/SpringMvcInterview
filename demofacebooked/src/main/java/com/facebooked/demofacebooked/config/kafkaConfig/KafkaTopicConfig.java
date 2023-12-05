@@ -1,6 +1,6 @@
-package com.facebooked.demofacebooked.config;
+package com.facebooked.demofacebooked.config.kafkaConfig;
 
-/*
+
 import lombok.Value;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
@@ -9,22 +9,18 @@ import org.springframework.kafka.config.TopicBuilder;
 
 @Configuration
 public class KafkaTopicConfig {
-
-    @Value("${spring.kafka.topic.name}")
-    private String topicName;
-
-    @Value("${spring.kafka.topic-json.name}")
-    private String topicJsonName;
+    private static final String stringKafkaTopicName = "dahlakTechno_StringKafka";
+    private static  final String jsonKafkaTopicName = "dahlakTechno_jsonKafka";
 
     @Bean
     public NewTopic javaguidesTopic(){
-        return TopicBuilder.name(topicName)
+        return TopicBuilder.name(stringKafkaTopicName)
                 .build();
     }
 
     @Bean
     public NewTopic javaguidesJsonTopic(){
-        return TopicBuilder.name(topicJsonName)
+        return TopicBuilder.name(jsonKafkaTopicName)
                 .build();
     }
-}*/
+}

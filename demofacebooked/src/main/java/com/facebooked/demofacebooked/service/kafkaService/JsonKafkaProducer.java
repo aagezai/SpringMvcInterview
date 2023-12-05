@@ -1,4 +1,4 @@
-package com.facebooked.demofacebooked.service;
+package com.facebooked.demofacebooked.service.kafkaService;
 
 import com.facebooked.demofacebooked.pojo.Employee;
 import org.slf4j.Logger;
@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class JsonKafkaProducer {
 
-    @Value("${spring.kafka.topic-json.name}")
-    private String topicJsonName;
-
+    private static  final String jsonKafkaTopicName = "dahlakTechno_jsonKafka";
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonKafkaProducer.class);
     @Autowired
     private KafkaTemplate<String, Employee> kafkaTemplate;
@@ -25,13 +23,12 @@ public class JsonKafkaProducer {
 
         LOGGER.info("Inside of sendMessage method of JsonKafkaProducer ");
 
-        Message<Employee> message = MessageBuilder
+        /*Message<Employee> message = MessageBuilder
                 .withPayload(employee)
-                .setHeader(KafkaHeaders.TOPIC, topicJsonName)
-                .build();
+                .setHeader(KafkaHeaders.TOPIC, jsonKafkaTopicName)
+                .build();*/
         // Header- topic//payload user
-
-        //kafkaTemplate.send(topicJsonName,user);
-        kafkaTemplate.send(message);
+        kafkaTemplate.send(jsonKafkaTopicName,employee);
+       // kafkaTemplate.send(message);
     }
 }

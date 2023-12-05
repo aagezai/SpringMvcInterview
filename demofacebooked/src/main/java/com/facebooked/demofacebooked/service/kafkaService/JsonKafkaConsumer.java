@@ -1,4 +1,4 @@
-package com.facebooked.demofacebooked.service;
+package com.facebooked.demofacebooked.service.kafkaService;
 
 import com.facebooked.demofacebooked.pojo.Employee;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JsonKafkaConsumer {
+    private static  final String jsonKafkaTopicName = "dahlakTechno_jsonKafka";
+    private static final String stringConsumerGroupId ="myGroup";
     private Employee employee;
 
-    @KafkaListener(topics = "${spring.kafka.topic-json.name}", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(topics = jsonKafkaTopicName, groupId = stringConsumerGroupId)
     public void consume(Employee employee){
         this.employee = employee;
     }
