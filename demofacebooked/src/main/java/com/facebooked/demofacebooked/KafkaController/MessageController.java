@@ -1,13 +1,10 @@
-package com.facebooked.demofacebooked.controller;
-import com.facebooked.demofacebooked.service.KafkaStringProducer;
+package com.facebooked.demofacebooked.KafkaController;
+import com.facebooked.demofacebooked.service.kafkaService.KafkaStringProducer;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/kafka")
+@RequestMapping("/api/v1/kafkaString")
 public class MessageController {
 
     private KafkaStringProducer kafkaStringProducer;
@@ -17,7 +14,7 @@ public class MessageController {
     }
 
     // http:localhost:8080/api/v1/kafka/publish?message=hello world
-    @GetMapping("/publish")
+    @PostMapping("/publish")
     public ResponseEntity<String> publish(@RequestParam("message") String message){
         kafkaStringProducer.sendMessage(message);
         return ResponseEntity.ok("Message sent to the topic");
