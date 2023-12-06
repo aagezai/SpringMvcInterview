@@ -1,5 +1,4 @@
 package com.facebooked.demofacebooked.AOP_For_Logger;
-/*
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -16,22 +15,22 @@ import org.springframework.stereotype.Component;
 public class Aop_For_Logger_Class {
     private static final Logger LOGGER = LoggerFactory.getLogger(Aop_For_Logger_Class.class);
 
-    @Before("execution(* com.facebooked.demofacebooked.*(..))")
+    @Before("execution(* com.facebooked.demofacebooked..*(..))")
     public void logBeforeMethodExecution(JoinPoint joinPoint) {
         LOGGER.info("Before executing: " + joinPoint.getSignature().toShortString());
     }
 
-    @After("execution(* com.facebooked.demofacebooked.*(..))")
+    @After("execution(* com.facebooked.demofacebooked..*(..))")
     public void logAfterMethodExecution(JoinPoint joinPoint) {
         LOGGER.info("After executing: " + joinPoint.getSignature().toShortString());
     }
 
-    @Around("execution(* com.facebooked.demofacebooked.*(..))")
+/*    @Around("execution(* com.facebooked.demofacebooked..*(..))")
     public Object logAroundMethodExecution(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         LOGGER.info("Before executing (around): " + proceedingJoinPoint.getSignature().toShortString());
         Object result = proceedingJoinPoint.proceed();
         LOGGER.info("After executing (around): " + proceedingJoinPoint.getSignature().toShortString());
         return result;
-    }
+    }*/
 }
-*/
+
