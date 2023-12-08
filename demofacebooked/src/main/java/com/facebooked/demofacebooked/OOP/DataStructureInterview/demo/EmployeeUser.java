@@ -1,4 +1,4 @@
-package com.facebooked.demofacebooked.DataStructureInterview.demo;
+package com.facebooked.demofacebooked.OOP.DataStructureInterview.demo;
 
 import lombok.Builder;
 import org.springframework.stereotype.Component;

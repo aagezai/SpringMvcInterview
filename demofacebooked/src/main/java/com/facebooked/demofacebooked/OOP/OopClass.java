@@ -1,13 +1,8 @@
 package com.facebooked.demofacebooked.OOP;
 
-import com.facebooked.demofacebooked.DataStructureInterview.demo.EmployeeUser;
-import com.facebooked.demofacebooked.DataStructureInterview.demo.EmployeeUser;
+import com.facebooked.demofacebooked.OOP.DataStructureInterview.demo.EmployeeUser;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.Arrays;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.stream.IntStream;
 
 public class OopClass implements Cloneable {

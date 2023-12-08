@@ -1,4 +1,4 @@
-package com.facebooked.demofacebooked.DataStructureInterview.demo;
+package com.facebooked.demofacebooked.OOP.DataStructureInterview.demo;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -18,6 +18,20 @@ public class StreamApiDemo {
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList()).forEach(System.out::print);
         System.out.println("\n+++++++ find non repeated numbers ");
+        List<Integer> numbers = List.of(5, 3, 6, 6, 2, 7, 7, 4, 1);
+
+        Set<Integer> seen = new HashSet<>();
+        List<Integer> result1 = new ArrayList<>();
+        for (Integer number : numbers) {
+            if (seen.add(number)) {
+                result1.add(number);
+            } else {
+                result1.remove(number); // Remove all occurrences of duplicated elements
+            }
+        }
+        System.out.print("Original List: " + numbers);
+        System.out.print("List without repeated numbers: " + result1);
+        System.out.print("\n+++++++ or this way-> find non repeated numbers \n");
         List.of(5, 3, 6, 6, 2, 7, 7, 4, 1)
                 .stream().collect(Collectors.groupingBy(el -> el, Collectors.counting()))
                 .entrySet().stream()
@@ -105,12 +119,10 @@ public class StreamApiDemo {
         System.out.println("-----------Fist dupplicate ----------------------");
 
         List<Integer> dupplicate = List.of(2, 3, 4, 2, 6, 8, 9, 3, 6);
-        LinkedHashSet<Integer> first1 = new LinkedHashSet<>();
-        for (int i = 0; i <= dupplicate.size() - 1; i++) {
-            if (!first1.contains(dupplicate.get(i))) {
-                first1.add(i);
-            } else {
-                System.out.println("this is first duplicate element" + dupplicate.get(i));
+        LinkedHashSet<Integer> setOfEle = new LinkedHashSet<>();
+        for(Integer dEle:dupplicate){
+            if(!setOfEle.add(dEle)){
+                System.out.println("first duplicate "+dEle);
                 break;
             }
         }
