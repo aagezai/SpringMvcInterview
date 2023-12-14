@@ -1,5 +1,6 @@
 package com.facebooked.demofacebooked.service.kafkaService;
 
+/*
 import com.facebooked.demofacebooked.pojo.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +24,14 @@ public class JsonKafkaProducer {
 
         LOGGER.info("Inside of sendMessage method of JsonKafkaProducer ");
 
-        /*Message<Employee> message = MessageBuilder
+        */
+/*Message<Employee> message = MessageBuilder
                 .withPayload(employee)
                 .setHeader(KafkaHeaders.TOPIC, jsonKafkaTopicName)
-                .build();*/
+                .build();*//*
+
         // Header- topic//payload user
         kafkaTemplate.send(jsonKafkaTopicName,employee);
        // kafkaTemplate.send(message);
     }
-}
+}*/

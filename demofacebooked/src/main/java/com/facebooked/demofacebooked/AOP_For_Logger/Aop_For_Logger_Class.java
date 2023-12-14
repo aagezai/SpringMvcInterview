@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
 public class Aop_For_Logger_Class {
     private static final Logger LOGGER = LoggerFactory.getLogger(Aop_For_Logger_Class.class);
 
-    @Before("execution(* com.facebooked.demofacebooked..*(..))")
+    @Before("execution(* com.facebooked.demofacebooked.controller..*(..))")
     public void logBeforeMethodExecution(JoinPoint joinPoint) {
         LOGGER.info("Before executing: " + joinPoint.getSignature().toShortString());
     }
 
-    @After("execution(* com.facebooked.demofacebooked..*(..))")
+    @After("execution(* com.facebooked.demofacebooked.controller..*(..))")
     public void logAfterMethodExecution(JoinPoint joinPoint) {
         LOGGER.info("After executing: " + joinPoint.getSignature().toShortString());
     }

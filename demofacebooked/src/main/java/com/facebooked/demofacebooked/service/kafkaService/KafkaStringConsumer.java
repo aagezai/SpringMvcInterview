@@ -1,5 +1,6 @@
 package com.facebooked.demofacebooked.service.kafkaService;
 
+/*
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -13,4 +14,4 @@ public class KafkaStringConsumer {
         System.out.println("message received"+ message);
 
     }
-}
+}*/
