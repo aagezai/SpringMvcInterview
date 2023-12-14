@@ -40,13 +40,13 @@ public class JwtCreator {
 
     private JSONObject createPayload() {
         String subject = "1234567890";
-        String issuer = "your_issuer";
+        String issuer = "aaron";
         String audience = "your_audience";
         long expirationTime = System.currentTimeMillis() + 3600000; // 1 hour from now
         long notBefore = System.currentTimeMillis() - 60000; // 1 minute ago
         long issuedAt = System.currentTimeMillis();
         String jwtId = "your_jwt_id";
-        String name = "John Doe";
+        String name = "aaron";
         String[] roles = {"admin", "user"};
 
         JSONObject payloadJson = new JSONObject();
