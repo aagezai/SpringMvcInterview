@@ -27,6 +27,10 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
 
     }
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public ResponseEntity<String> hello(){
+        return ResponseEntity.ok("you are allowed here");
+    }
 
     @ResponseBody
     @RequestMapping(value = "/login",method = RequestMethod.POST)
