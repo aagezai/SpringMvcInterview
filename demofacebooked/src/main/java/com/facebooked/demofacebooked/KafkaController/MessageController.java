@@ -1,4 +1,5 @@
 package com.facebooked.demofacebooked.KafkaController;
+/*
 import com.facebooked.demofacebooked.service.kafkaService.KafkaStringProducer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,4 +20,4 @@ public class MessageController {
         kafkaStringProducer.sendMessage(message);
         return ResponseEntity.ok("Message sent to the topic");
     }
-}
+}*/

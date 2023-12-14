@@ -1,5 +1,6 @@
 package com.facebooked.demofacebooked.service.kafkaService;
 
+/*
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,11 @@ public class KafkaStringProducer {
     public void sendMessage(String message){
         LOGGER.info(String.format("Inside of sendMessage of KafkaProducer to send message"));
         kafkaTemplate.send(stringKafkaTopicName, message);
-       /* Message message1 = MessageBuilder
+       */
+/* Message message1 = MessageBuilder
                 .withPayload(message)
                 .setHeader(KafkaHeaders.TOPIC,topicName).build();
-        kafkaTemplate.send(message1);*/
+        kafkaTemplate.send(message1);*//*
+
     }
-}
+}*/

@@ -1,6 +1,6 @@
 package com.facebooked.demofacebooked.SpringSecurity.controller;
 
-import com.facebooked.demofacebooked.SpringSecurity.model.User;
+import com.facebooked.demofacebooked.SpringSecurity.model.UserAuth;
 import com.facebooked.demofacebooked.SpringSecurity.model.request.LoginReq;
 import com.facebooked.demofacebooked.SpringSecurity.model.response.ErrorRes;
 import com.facebooked.demofacebooked.SpringSecurity.model.response.LoginRes;
@@ -21,7 +21,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
 
 
-    private JwtUtil jwtUtil;
+    private final JwtUtil jwtUtil;
     public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
@@ -36,7 +36,7 @@ public class AuthController {
             Authentication authentication =
                     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginReq.getEmail(), loginReq.getPassword()));
             String email = authentication.getName();
-            User user = new User(email,"");
+            UserAuth user = new UserAuth(email,"");
             String token = jwtUtil.createToken(user);
             LoginRes loginRes = new LoginRes(email,token);
 

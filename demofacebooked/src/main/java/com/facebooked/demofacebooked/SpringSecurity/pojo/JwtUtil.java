@@ -1,6 +1,6 @@
 package com.facebooked.demofacebooked.SpringSecurity.pojo;
 
-import com.facebooked.demofacebooked.SpringSecurity.model.User;
+import com.facebooked.demofacebooked.SpringSecurity.model.UserAuth;
 import io.jsonwebtoken.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.AuthenticationException;
@@ -26,7 +26,7 @@ public class JwtUtil {
         this.jwtParser = Jwts.parser().setSigningKey(secret_key);
     }
 
-    public String createToken(User user) {
+    public String createToken(UserAuth user) {
         Claims claims = Jwts.claims().setSubject(user.getEmail());
         claims.put("firstName",user.getFirstName());
         claims.put("lastName",user.getLastName());

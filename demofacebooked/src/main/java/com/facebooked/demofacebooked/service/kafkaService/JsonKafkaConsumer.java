@@ -1,5 +1,6 @@
 package com.facebooked.demofacebooked.service.kafkaService;
 
+/*
 import com.facebooked.demofacebooked.pojo.Employee;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -18,4 +19,4 @@ public class JsonKafkaConsumer {
     public Employee getConsumed() {
         return employee;
     }
-}
+}*/

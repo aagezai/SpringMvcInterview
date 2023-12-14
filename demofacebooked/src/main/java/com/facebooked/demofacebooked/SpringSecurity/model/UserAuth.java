@@ -1,12 +1,12 @@
 package com.facebooked.demofacebooked.SpringSecurity.model;
 
-public class User {
+public class UserAuth {
     private String email;
     private String password;
     private String firstName;
     private String lastName;
 
-    public User(String email, String password) {
+    public UserAuth(String email, String password) {
         this.email = email;
         this.password = password;
     }
