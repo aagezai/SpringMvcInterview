@@ -37,28 +37,25 @@ public class SecurityConfig  {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        /*http
                 .authorizeRequests()
                 .requestMatchers(request -> "/rest/auth".equals(request.getServletPath()))
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
+        return http.build();*/
 
-
-        /*http.csrf().disable()
+        http
                 .authorizeRequests()
-                .Request("/rest/auth/**")
-                .permitAll();
+                .requestMatchers("/rest/auth/**")
+                .permitAll()
                 .anyRequest().authenticated()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(jwtAuthorizationFilter,UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();*/
+        return http.build();
     }
 
 
