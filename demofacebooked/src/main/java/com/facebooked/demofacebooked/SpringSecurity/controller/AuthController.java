@@ -33,13 +33,13 @@ public class AuthController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/test",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ResponseEntity login(@RequestBody LoginReq loginReq)  {
 
         try {
-            Authentication authentication =
-                    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginReq.getEmail(), loginReq.getPassword()));
-            String email = authentication.getName();
+            /*Authentication authentication =
+                    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginReq.getEmail(), loginReq.getPassword()));*/
+            String email = loginReq.getEmail();
             UserAuth user = new UserAuth(email,"");
             String token = jwtUtil.createToken(user);
             LoginRes loginRes = new LoginRes(email,token);
