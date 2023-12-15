@@ -1,9 +1,7 @@
 package com.facebooked.demofacebooked.SpringSecurity.config;
-import com.facebooked.demofacebooked.SpringSecurity.pojo.JwtAuthorizationFilter;
-import com.facebooked.demofacebooked.SpringSecurity.pojo.JwtUtil;
+
 import com.facebooked.demofacebooked.SpringSecurity.pojo.JwtValidationFilter;
 import com.facebooked.demofacebooked.SpringSecurity.service.CustomUserDetailsService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,14 +23,12 @@ import java.util.List;
 public class SecurityConfig {
 
     private final CustomUserDetailsService userDetailsService;
-    private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final JwtValidationFilter jwtValidationFilter;
 
     public SecurityConfig(CustomUserDetailsService customUserDetailsService,
-                          JwtAuthorizationFilter jwtAuthorizationFilter,
                           JwtValidationFilter jwtValidationFilter) {
         this.userDetailsService = customUserDetailsService;
-        this.jwtAuthorizationFilter = jwtAuthorizationFilter;
+        /*this.jwtAuthorizationFilter = jwtAuthorizationFilter;*/
         this.jwtValidationFilter = jwtValidationFilter;
     }
 
@@ -45,9 +41,7 @@ public class SecurityConfig {
                 .requestMatchers("/rest/auth/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
-                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
