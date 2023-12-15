@@ -2,10 +2,14 @@ package com.facebooked.demofacebooked.SpringSecurity.pojo;
 
 import com.facebooked.demofacebooked.SpringSecurity.model.UserAuth;
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
+import java.security.Key;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +18,9 @@ import java.util.concurrent.TimeUnit;
 public class JwtUtil {
 
 
-    private final String secret_key = "mysecretkey";
+    private final String secret_key = "KwfGfZ+FQxhz6XLIp3mAsHbeI3B3F1Qe7ONXTmxM31Q=";
+    private static final byte[] SECRET_KEY_BYTES = Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded();
+
     private long accessTokenValidity = 60*60*1000;
 
     private final JwtParser jwtParser;
@@ -23,10 +29,13 @@ public class JwtUtil {
     private final String TOKEN_PREFIX = "Bearer ";
 
     public JwtUtil(){
+
         this.jwtParser = Jwts.parser().setSigningKey(secret_key);
     }
 
     public String createToken(UserAuth user) {
+        System.out.println("in createToken");
+
         Claims claims = Jwts.claims().setSubject(user.getEmail());
         claims.put("firstName",user.getFirstName());
         claims.put("lastName",user.getLastName());
@@ -40,7 +49,8 @@ public class JwtUtil {
     }
 
     private Claims parseJwtClaims(String token) {
-        return jwtParser.parseClaimsJws(token).getBody();
+
+        return jwtParser.setSigningKey(secret_key).parseClaimsJws(token).getBody();
     }
 
     public Claims resolveClaims(HttpServletRequest req) {
@@ -60,7 +70,7 @@ public class JwtUtil {
     }
 
     public String resolveToken(HttpServletRequest request) {
-
+        System.out.println("in resolveToken");
         String bearerToken = request.getHeader(TOKEN_HEADER);
         if (bearerToken != null && bearerToken.startsWith(TOKEN_PREFIX)) {
             return bearerToken.substring(TOKEN_PREFIX.length());
@@ -82,6 +92,19 @@ public class JwtUtil {
 
     private List<String> getRoles(Claims claims) {
         return (List<String>) claims.get("roles");
+    }
+
+    public static void main(String[] args) {
+        String jwt_token =new JwtUtil().createToken(new UserAuth("testEmailtestEmailtestEmail","testPasswordtestPasswordtestPassword"));
+        System.out.println(jwt_token);
+        //String randomSecretKey = generateRandomSecretKey();
+        //System.out.println("Random Secret Key: " + randomSecretKey);
+    }
+    private static String generateRandomSecretKey() {
+        byte[] keyBytes = new byte[32]; // Adjust the size as needed
+        SecureRandom secureRandom = new SecureRandom();
+        secureRandom.nextBytes(keyBytes);
+        return Base64.getEncoder().encodeToString(keyBytes);
     }
 
 
