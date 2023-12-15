@@ -33,7 +33,7 @@ public class AuthController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/test",method = RequestMethod.POST)
     public ResponseEntity login(@RequestBody LoginReq loginReq)  {
 
         try {
