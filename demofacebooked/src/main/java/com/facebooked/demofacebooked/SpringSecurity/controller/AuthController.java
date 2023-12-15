@@ -27,13 +27,13 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
 
     }
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
     public ResponseEntity<String> hello(){
         return ResponseEntity.ok("you are allowed here");
     }
 
     @ResponseBody
-    @RequestMapping(value = "/test",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ResponseEntity login(@RequestBody LoginReq loginReq)  {
 
         try {
