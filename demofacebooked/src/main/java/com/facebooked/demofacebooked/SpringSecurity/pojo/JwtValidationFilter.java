@@ -8,10 +8,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 @Component
@@ -33,7 +37,21 @@ public class JwtValidationFilter extends OncePerRequestFilter {
             String accessToken = jwtUtil.resolveToken(request);
             if (accessToken != null) {
                 Claims claims = jwtUtil.resolveClaims(request);
+                System.out.println("your token is valid");
+                String email = claims.getSubject();
+                try {
+                    Authentication authentication =
+                            new UsernamePasswordAuthenticationToken(email, "", new ArrayList<>());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } catch (Exception e) {
+                    errorDetails.put("message", "Authentication Error");
+                    errorDetails.put("details", e.getMessage());
+                    response.setStatus(HttpStatus.FORBIDDEN.value());
+                    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
+                    mapper.writeValue(response.getWriter(), errorDetails);
+                    return;
+                }
                 if (claims == null || !jwtUtil.validateClaims(claims)) {
                     sendErrorResponse(response, HttpStatus.FORBIDDEN, "Invalid or expired token");
                     return;
