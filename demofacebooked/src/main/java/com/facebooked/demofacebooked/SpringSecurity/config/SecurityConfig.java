@@ -1,7 +1,6 @@
 package com.facebooked.demofacebooked.SpringSecurity.config;
-
-import com.facebooked.demofacebooked.SpringSecurity.pojo.JwtValidationFilter;
 import com.facebooked.demofacebooked.SpringSecurity.service.CustomUserDetailsService;
+import com.facebooked.demofacebooked.SpringSecurity.service.JwtValidationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,6 +36,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .requestMatchers("/rest/auth/saveUserAuth").permitAll()
                 .requestMatchers("/rest/auth/test").permitAll()
                 .requestMatchers("/rest/auth/login").permitAll()
                 .anyRequest().authenticated()

@@ -1,4 +1,4 @@
-package com.facebooked.demofacebooked.SpringSecurity.pojo;
+package com.facebooked.demofacebooked.SpringSecurity.service;
 
 import com.facebooked.demofacebooked.SpringSecurity.model.UserAuth;
 import io.jsonwebtoken.*;
@@ -6,6 +6,7 @@ import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.security.SecureRandom;
@@ -14,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Component
+@Service
 public class JwtUtil {
 
 
@@ -95,8 +96,8 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) {
-        String jwt_token =new JwtUtil().createToken(new UserAuth("testEmailtestEmailtestEmail","testPasswordtestPasswordtestPassword"));
-        System.out.println(jwt_token);
+       // String jwt_token =new JwtUtil().createToken(new UserAuth("testEmailtestEmailtestEmail","testPasswordtestPasswordtestPassword"));
+       // System.out.println(jwt_token);
         //String randomSecretKey = generateRandomSecretKey();
         //System.out.println("Random Secret Key: " + randomSecretKey);
     }
