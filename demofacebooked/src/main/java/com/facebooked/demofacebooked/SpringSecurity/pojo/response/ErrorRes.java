@@ -1,4 +1,4 @@
-package com.facebooked.demofacebooked.SpringSecurity.model.response;
+package com.facebooked.demofacebooked.SpringSecurity.pojo.response;
 
 import org.springframework.http.HttpStatus;
 

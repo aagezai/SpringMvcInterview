@@ -1,4 +1,4 @@
-package com.facebooked.demofacebooked.SpringSecurity.model.request;
+package com.facebooked.demofacebooked.SpringSecurity.pojo.request;
 
 
 

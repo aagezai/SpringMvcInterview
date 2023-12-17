@@ -1,4 +1,4 @@
-package com.facebooked.demofacebooked.SpringSecurity.model.response;
+package com.facebooked.demofacebooked.SpringSecurity.pojo.response;
 
 public class LoginRes {
     private String email;
