@@ -7,6 +7,7 @@ import com.facebooked.demofacebooked.SpringSecurity.service.JwtUtil;
 import com.facebooked.demofacebooked.SpringSecurity.service.UserAuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,13 +20,13 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
-    private final UserAuthService saveUserAuthService;
+    private final UserAuthService userAuthService;
 
     // Constructor injection
-    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserAuthService saveUserAuthService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserAuthService userAuthService) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
-        this.saveUserAuthService = saveUserAuthService;
+        this.userAuthService = userAuthService;
     }
 
     // Existing methods...
@@ -33,7 +34,7 @@ public class AuthController {
    @PostMapping(value = "/saveUserAuth")
     public ResponseEntity saveUserAuth(@RequestBody UserAuth userAuth) {
         try {
-            UserAuth savedUser = saveUserAuthService.saveUserAuth(userAuth);
+            UserAuth savedUser = userAuthService.saveUserAuth(userAuth);
             return ResponseEntity.ok(savedUser);
         } catch (Exception e) {
             ErrorRes errorResponse = new ErrorRes(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
@@ -44,7 +45,7 @@ public class AuthController {
     public ResponseEntity deleteUserAuth(@PathVariable Long id) {
         try {
             System.out.println("delete UserAuth"+id);
-            UserAuth savedUser = saveUserAuthService.deleteUserAuth(id);
+            UserAuth savedUser = userAuthService.deleteUserAuth(id);
             return ResponseEntity.ok(savedUser);
         } catch (Exception e) {
             ErrorRes errorResponse = new ErrorRes(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
