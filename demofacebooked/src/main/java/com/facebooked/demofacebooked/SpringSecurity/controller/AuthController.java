@@ -4,17 +4,15 @@ import com.facebooked.demofacebooked.SpringSecurity.model.UserAuth;
 import com.facebooked.demofacebooked.SpringSecurity.pojo.request.LoginReq;
 import com.facebooked.demofacebooked.SpringSecurity.pojo.response.ErrorRes;
 import com.facebooked.demofacebooked.SpringSecurity.service.JwtUtil;
-import com.facebooked.demofacebooked.SpringSecurity.service.SaveUserAuthService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.facebooked.demofacebooked.SpringSecurity.service.UserAuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,13 +20,13 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
-    private final SaveUserAuthService saveUserAuthService;
+    private final UserAuthService userAuthService;
 
     // Constructor injection
-    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil, SaveUserAuthService saveUserAuthService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserAuthService userAuthService) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
-        this.saveUserAuthService = saveUserAuthService;
+        this.userAuthService = userAuthService;
     }
 
     // Existing methods...
@@ -36,7 +34,18 @@ public class AuthController {
    @PostMapping(value = "/saveUserAuth")
     public ResponseEntity saveUserAuth(@RequestBody UserAuth userAuth) {
         try {
-            UserAuth savedUser = saveUserAuthService.saveUserAuth(userAuth);
+            UserAuth savedUser = userAuthService.saveUserAuth(userAuth);
+            return ResponseEntity.ok(savedUser);
+        } catch (Exception e) {
+            ErrorRes errorResponse = new ErrorRes(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
+    }
+    @GetMapping(value = "/delete/{id}")
+    public ResponseEntity deleteUserAuth(@PathVariable Long id) {
+        try {
+            System.out.println("delete UserAuth"+id);
+            UserAuth savedUser = userAuthService.deleteUserAuth(id);
             return ResponseEntity.ok(savedUser);
         } catch (Exception e) {
             ErrorRes errorResponse = new ErrorRes(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
