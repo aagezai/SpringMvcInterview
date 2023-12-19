@@ -13,6 +13,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -41,9 +43,21 @@ public class JwtValidationFilter extends OncePerRequestFilter {
                 String email = claims.getSubject();
 
                 try {
+                    System.out.println(email);
+                    /*UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, "", new ArrayList<>());
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                    // Or
+                    */
                     UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
-                    Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                    //optional - you can retrieve the ip address of authenticated user and location as if you call third party IpStack
+                    WebAuthenticationDetails authDetails = (WebAuthenticationDetails) authToken.getDetails();
+                    String ipAddress = authDetails.getRemoteAddress();
+                    System.out.println("User IP Address: " + ipAddress);
+
 
                 } catch (Exception e) {
                     errorDetails.put("message", "Authentication Error");

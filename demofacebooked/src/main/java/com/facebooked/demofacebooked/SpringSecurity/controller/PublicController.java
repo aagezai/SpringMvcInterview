@@ -7,6 +7,7 @@ import com.facebooked.demofacebooked.SpringSecurity.service.JwtUtil;
 import com.facebooked.demofacebooked.SpringSecurity.service.UserAuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,6 +41,7 @@ public class PublicController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
+    //@PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/delete/{id}")
     public ResponseEntity deactivateUser(@PathVariable Long id) {
         try {
