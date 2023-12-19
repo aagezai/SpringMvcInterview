@@ -26,7 +26,7 @@ public class UserAuthService {
         userAuth.setPassword(passwordEncoder.encode(userAuth.getPassword()));
         return userAuthRepository.save(userAuth);
     }
-    //@PreAuthorize("USER")
+    //@PreAuthorize("hasAuthority('USER')")
     public UserAuth deleteUserAuth(Long id) {
         System.out.println("delete UserAuth " + id);
         Optional<UserAuth> userAuthOptional = userAuthRepository.findById(id);
