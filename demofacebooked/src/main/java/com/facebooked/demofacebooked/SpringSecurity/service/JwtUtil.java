@@ -20,7 +20,7 @@ public class JwtUtil {
 
 
     private final String secret_key = "KwfGfZ+FQxhz6XLIp3mAsHbeI3B3F1Qe7ONXTmxM31Q=";
-    private static final byte[] SECRET_KEY_BYTES = Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded();
+   // private static final byte[] SECRET_KEY_BYTES = Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded();
 
     private long accessTokenValidity = 60*60*1000;
 
@@ -37,7 +37,8 @@ public class JwtUtil {
     public String createToken(UserAuth user) {
         System.out.println("in createToken");
 
-        Claims claims = Jwts.claims().setSubject(user.getEmail());
+        Claims claims = Jwts.claims();
+        claims.setSubject(user.getEmail());
         claims.put("firstName",user.getFirstName());
         claims.put("lastName",user.getLastName());
         Date tokenCreateTime = new Date();
@@ -51,7 +52,7 @@ public class JwtUtil {
 
     private Claims parseJwtClaims(String token) {
 
-        return jwtParser.setSigningKey(secret_key).parseClaimsJws(token).getBody();
+        return jwtParser.parseClaimsJws(token).getBody();
     }
 
     public Claims resolveClaims(HttpServletRequest req) {
