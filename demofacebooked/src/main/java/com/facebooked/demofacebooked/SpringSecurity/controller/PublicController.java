@@ -7,7 +7,6 @@ import com.facebooked.demofacebooked.SpringSecurity.service.JwtUtil;
 import com.facebooked.demofacebooked.SpringSecurity.service.UserAuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,13 +16,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/auth")
-public class AuthController {
+public class PublicController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final UserAuthService userAuthService;
 
     // Constructor injection
-    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserAuthService userAuthService) {
+    public PublicController(AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserAuthService userAuthService) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
         this.userAuthService = userAuthService;
@@ -32,7 +31,7 @@ public class AuthController {
     // Existing methods...
 
    @PostMapping(value = "/saveUserAuth")
-    public ResponseEntity saveUserAuth(@RequestBody UserAuth userAuth) {
+    public ResponseEntity signUpUser(@RequestBody UserAuth userAuth) {
         try {
             UserAuth savedUser = userAuthService.saveUserAuth(userAuth);
             return ResponseEntity.ok(savedUser);
@@ -42,7 +41,7 @@ public class AuthController {
         }
     }
     @GetMapping(value = "/delete/{id}")
-    public ResponseEntity deleteUserAuth(@PathVariable Long id) {
+    public ResponseEntity deactivateUser(@PathVariable Long id) {
         try {
             System.out.println("delete UserAuth"+id);
             UserAuth savedUser = userAuthService.deleteUserAuth(id);
@@ -54,6 +53,7 @@ public class AuthController {
     }
     @GetMapping(value = "/test")
     public ResponseEntity<String> hello() {
+
         return ResponseEntity.ok("You are allowed here");
     }
 
@@ -77,10 +77,10 @@ public class AuthController {
 
             // Get UserDetails from Authentication principal
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-            // Use userDetails or convert it to your UserAuth if needed
-            UserAuth userAuth = convertUserDetailsToUserAuth(userDetails);
-
+            UserAuth userAuth = new UserAuth();
+            userAuth.setEmail(userDetails.getUsername());
+            userAuth.setPassword(userDetails.getPassword());
+            // todo add roles
             String jwt = jwtUtil.createToken(userAuth);
             return ResponseEntity.ok(jwt);
 
@@ -93,10 +93,5 @@ public class AuthController {
         }
     }
 
-    private UserAuth convertUserDetailsToUserAuth(UserDetails userDetails) {
-        UserAuth userAuth = new UserAuth();
-        userAuth.setEmail(userDetails.getUsername());
-        userAuth.setPassword(userDetails.getPassword());
-        return userAuth;
-    }
+
 }

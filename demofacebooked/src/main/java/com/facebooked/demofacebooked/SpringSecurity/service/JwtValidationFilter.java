@@ -9,33 +9,25 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 @Service
 public class JwtValidationFilter extends OncePerRequestFilter {
-    private final JwtUtil jwtUtil;
-    private final CustomAuthenticationProvider customAuthenticationProvider;
-    private final ObjectMapper mapper;
-
     @Autowired
-    public JwtValidationFilter(
-            JwtUtil jwtUtil,
-            CustomAuthenticationProvider customAuthenticationProvider,
-            ObjectMapper mapper) {
-        this.jwtUtil = jwtUtil;
-        this.customAuthenticationProvider = customAuthenticationProvider;
-        this.mapper = mapper;
-    }
+    private  JwtUtil jwtUtil;
+    @Autowired
+    private  CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    private ObjectMapper mapper;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -47,13 +39,11 @@ public class JwtValidationFilter extends OncePerRequestFilter {
                 Claims claims = jwtUtil.resolveClaims(request);
                 System.out.println("your token is valid");
                 String email = claims.getSubject();
-                try {
-                    // Use CustomAuthenticationProvider directly for JWT-based authentication
-                    Authentication authentication = customAuthenticationProvider.authenticate(
-                            new UsernamePasswordAuthenticationToken(email, "", new ArrayList<>())
-                    );
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
 
+                try {
+                    UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
+                    Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
 
                 } catch (Exception e) {
                     errorDetails.put("message", "Authentication Error");

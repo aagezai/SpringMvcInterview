@@ -5,6 +5,7 @@ import com.facebooked.demofacebooked.SpringSecurity.model.UserAuth;
 
 import com.facebooked.demofacebooked.SpringSecurity.pojo.request.Role;
 import com.facebooked.demofacebooked.SpringSecurity.repo.UserAuthRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,13 +19,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    private final UserAuthRepository userRepository;
-    public CustomUserDetailsService(UserAuthRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private UserAuthRepository userAuthRepository;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-      UserAuth user = userRepository.findByEmail(email)
+      UserAuth user = userAuthRepository.findByEmail(email)
               .orElseThrow(() -> new UsernameNotFoundException("UserNotFound"));
         return new User(user.getEmail(), user.getPassword(), getAuthorities(user.getRoles()));
     }
