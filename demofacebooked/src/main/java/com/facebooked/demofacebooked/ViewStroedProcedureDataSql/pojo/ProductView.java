@@ -1,20 +1,8 @@
-package com.facebooked.demofacebooked.ViewStroedProcedureDataSql.model;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
-@Entity
+package com.facebooked.demofacebooked.ViewStroedProcedureDataSql.pojo;
 public class ProductView {
 
-    @Id
-    @Column(name = "product_id")
     private Long productId;
-    
-    @Column(name = "name", nullable = false)
     private String name;
-    
-    @Column(name = "price", nullable = false)
     private Double price;
 
     public ProductView() {
@@ -25,7 +13,6 @@ public class ProductView {
         this.name = name;
         this.price = price;
     }
-
 
     public Long getProductId() {
         return productId;
@@ -49,5 +36,14 @@ public class ProductView {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductView{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
