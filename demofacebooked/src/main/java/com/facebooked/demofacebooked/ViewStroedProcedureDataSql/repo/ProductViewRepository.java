@@ -1,10 +1,9 @@
 package com.facebooked.demofacebooked.ViewStroedProcedureDataSql.repo;
 
-import com.facebooked.demofacebooked.ViewStroedProcedureDataSql.model.ProductView;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.facebooked.demofacebooked.ViewStroedProcedureDataSql.pojo.ProductView;
 
-public interface ProductViewRepository extends JpaRepository<ProductView, Long> {
+import java.util.List;
 
-    // You can add custom query methods if needed
-
+public interface ProductViewRepository {
+    List<ProductView> findAll();
 }

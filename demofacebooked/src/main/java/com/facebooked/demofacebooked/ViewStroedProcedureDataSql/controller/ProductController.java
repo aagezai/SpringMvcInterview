@@ -1,7 +1,7 @@
 package com.facebooked.demofacebooked.ViewStroedProcedureDataSql.controller;
 
 import com.facebooked.demofacebooked.ViewStroedProcedureDataSql.model.Product;
-import com.facebooked.demofacebooked.ViewStroedProcedureDataSql.model.ProductView;
+import com.facebooked.demofacebooked.ViewStroedProcedureDataSql.pojo.ProductView;
 import com.facebooked.demofacebooked.ViewStroedProcedureDataSql.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package com.facebooked.demofacebooked.ViewStroedProcedureDataSql.service;
 
 import com.facebooked.demofacebooked.ViewStroedProcedureDataSql.model.Product;
-import com.facebooked.demofacebooked.ViewStroedProcedureDataSql.model.ProductView;
+import com.facebooked.demofacebooked.ViewStroedProcedureDataSql.pojo.ProductView;
 
 import java.math.BigDecimal;
 import java.util.List;
