@@ -14,6 +14,7 @@ public class ProductViewServiceImpl implements ProductViewRepository {
     private final JdbcTemplate jdbcTemplate;
 
     public ProductViewServiceImpl(JdbcTemplate jdbcTemplate) {
+
         this.jdbcTemplate = jdbcTemplate;
     }
 
