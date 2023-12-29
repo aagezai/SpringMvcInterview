@@ -1,8 +1,8 @@
 package com.facebooked.demofacebooked.hibernateAndJpaController;
 
-import com.facebooked.demofacebooked.model.YourEntity;
-import com.facebooked.demofacebooked.service.hibernateAndJpaService.YourJpaService;
-import com.facebooked.demofacebooked.service.hibernateAndJpaService.YourService;
+import com.facebooked.demofacebooked.hibernateAndJpaController.model.YourEntity;
+import com.facebooked.demofacebooked.hibernateAndJpaController.service.hibernateAndJpaService.YourJpaService;
+import com.facebooked.demofacebooked.hibernateAndJpaController.service.hibernateAndJpaService.YourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
