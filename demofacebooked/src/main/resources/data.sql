@@ -4,3 +4,8 @@ VALUES
     (2, 'Product B', 25.5, 75, 'Manufacturer Y'),
     (3, 'Product B', 25.5, 75, 'Manufacturer Y'),
     (4, 'Product C', 35.0, 120, '5Manufacturer Z');
+
+UPDATE ProductView
+SET name = 'fromview'
+WHERE product_id = 3;
+

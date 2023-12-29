@@ -23,3 +23,4 @@ CREATE OR REPLACE VIEW ProductView AS
 SELECT product_id, name, price
 FROM Product;
 
+

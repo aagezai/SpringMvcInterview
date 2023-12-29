@@ -11,5 +11,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Procedure(name = "GetProductsByPriceRange")
-    List<Product> getProductsByPriceRange(@Param("minPrice") BigDecimal minPrice, @Param("maxPrice") BigDecimal maxPrice);
+    List<Product> getProductsByPriceRange(BigDecimal minPrice,BigDecimal maxPrice);
 }
