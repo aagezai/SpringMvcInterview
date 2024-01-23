@@ -18,7 +18,7 @@ public class TestController {
     }
     @GetMapping("/before")
     public String testBeforeAop(){
-        int a = 1/0;
+        int a = 1/0;// exception here
         return "anyString";
     }
 }
