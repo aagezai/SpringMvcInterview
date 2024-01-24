@@ -19,5 +19,13 @@ pipeline {
                 }
             }
         }
+        stages {
+                stage('Checkout') {
+                    steps {
+                        script {
+                            checkout([$class: 'GitSCM', branches: [[name: 'origin/new-aaron-branch']], userRemoteConfigs: [[url: 'https://github.com/aagezai/SpringMvcInterview.git']], extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'path/to/include/*'], [path: 'another/path/to/include/*']]]]])
+                        }
+                    }
+                }
     }
 }
