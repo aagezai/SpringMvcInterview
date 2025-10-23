@@ -37,3 +37,31 @@ public class JsonMessageController {
         return new ResponseEntity<>(employee, HttpStatus.ACCEPTED);
     }
 }*/
+//................. simple step highlight
+/*
+private static final String STRING_TOPIC_NAME = "dahlakTechno_StringKafka";
+private static final String JSON_TOPIC_NAME = "dahlakTechno_jsonKafka";
+
+// Creating a topic for string messages
+@Bean
+public NewTopic stringKafkaTopic() {
+        return TopicBuilder.name(STRING_TOPIC_NAME).build();
+        }
+
+// Creating a topic for JSON messages
+@Bean
+public NewTopic jsonKafkaTopic() {
+        return TopicBuilder.name(JSON_TOPIC_NAME).build();
+        }
+
+// Kafka listener for receiving string messages
+@KafkaListener(topics = STRING_TOPIC_NAME, groupId = "string-group")
+public void listenToStringMessages(String message) {
+        System.out.println("Received string message: " + message);
+        }
+
+// Kafka listener for receiving JSON messages
+@KafkaListener(topics = JSON_TOPIC_NAME, groupId = "json-group")
+public void listenToJsonMessages(String message) {
+        System.out.println("Received JSON message: " + message);
+        }*/

@@ -11,7 +11,8 @@ import java.io.FileNotFoundException;
 public class RestControllerAdviceFaceBooked {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error"+ e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Internal Server Error"+ e.getMessage());
     }
 
     @ExceptionHandler({RuntimeException.class})
@@ -24,6 +25,7 @@ public class RestControllerAdviceFaceBooked {
     }
     @ExceptionHandler(FaceBookedException.class)
     public ResponseEntity<String> handleRuntimeException(FaceBookedException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage()+" "+e.getMessage()+" \n"+e.getStackTrace()+"\n"+HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(e.getLocalizedMessage()+" "+e.getMessage()+" \n"+e.getStackTrace()+"\n"+HttpStatus.NOT_FOUND);
     }
 }

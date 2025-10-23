@@ -17,11 +17,18 @@ public class StreamApiDemo {
                 .stream().flatMap(str -> Arrays.stream(str.split("")))
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList()).forEach(System.out::print);
+
         System.out.println("\n+++++++ find non repeated numbers ");
         List<Integer> numbers = List.of(5, 3, 6, 6, 2, 7, 7, 4, 1);
-        List<Integer> result1 = numbers.stream().collect(Collectors.groupingBy(el ->el,Collectors.counting()))
-                .entrySet().stream().filter(el ->el.getValue() ==1).map(el ->el.getKey()).collect(Collectors.toList());
-
+        List<Integer> result1 = numbers.stream()
+                  .collect(Collectors.groupingBy(el ->el,Collectors.counting()))
+                .entrySet().stream().
+                filter(el ->el.getValue() ==1).
+                map(el ->el.getKey())
+                .collect(Collectors.toList());
+        System.out.println("using Distinct");
+        numbers.stream().distinct().sorted(Comparator.reverseOrder()).forEach(System.out::print);
+        System.out.println("++++++++++");
         System.out.print("Original List: " + numbers);
         System.out.print("List without repeated numbers: " + result1);
         System.out.println("\n +++++get only alphabets from list of words");
@@ -36,7 +43,7 @@ public class StreamApiDemo {
                 , new EmployeeUser(12144212L, "E6", 1000000, "D1"));
         System.out.println("+++++++ sort list of employee based on salary first then by department\n");
         employees.stream().sorted(Comparator.comparing(EmployeeUser::getSalary).reversed().thenComparing(EmployeeUser::getDepartment).thenComparing(EmployeeUser::getName))
-                /*.skip(1).limit(2)*/.collect(Collectors.toList()).forEach(System.out::println);
+                /*limit(2).skip(1)*/.collect(Collectors.toList()).forEach(System.out::println);
         System.out.println("++++Group by Department  ++++++");
         employees.stream().collect(Collectors.groupingBy(EmployeeUser::getDepartment))
                 .entrySet()
@@ -87,7 +94,7 @@ public class StreamApiDemo {
 
         }
         System.out.println();
-        System.out.println("-----------After converting to list reverse the Array ----------------------");
+        System.out            .println("-----------After converting to list reverse the Array ----------------------");
         Integer[] arr1 = {4, 1, 9, 3, 2, 9};
         List<Integer> re = Arrays.asList(arr1);
         Collections.reverse(re);

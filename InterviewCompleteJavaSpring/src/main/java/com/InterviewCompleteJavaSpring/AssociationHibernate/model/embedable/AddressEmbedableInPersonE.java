@@ -3,8 +3,10 @@ package com.InterviewCompleteJavaSpring.AssociationHibernate.model.embedable;
 
 import jakarta.persistence.Embeddable;
 
+import java.io.Serializable;
+
 @Embeddable
-public class AddressEmbedableInPersonE {
+public class AddressEmbedableInPersonE implements Serializable {
 
     private String street;
     private String city;

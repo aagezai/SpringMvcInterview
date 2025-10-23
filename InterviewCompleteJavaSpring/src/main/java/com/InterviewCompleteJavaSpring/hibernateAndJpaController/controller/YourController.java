@@ -1,4 +1,4 @@
-package com.InterviewCompleteJavaSpring.hibernateAndJpaController;
+package com.InterviewCompleteJavaSpring.hibernateAndJpaController.controller;
 
 import com.InterviewCompleteJavaSpring.hibernateAndJpaController.model.YourEntity;
 import com.InterviewCompleteJavaSpring.hibernateAndJpaController.service.hibernateAndJpaService.YourJpaService;
